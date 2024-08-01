@@ -86,6 +86,7 @@ try:
         
     with col2:
         st.image(image_url, width=100) 
+    st.write("BOOYEA")
     st.write(weakstring[0:-2:], unsafe_allow_html=True)
     st.write(resstring[0:-2:], unsafe_allow_html=True)
     st.write(immstring[0:-2:], unsafe_allow_html=True)
