@@ -40,25 +40,7 @@ try:
             if coverage not in coverages:
                 coverages.append(coverage)
                 coverage_string+=f'<span style="color:{Type_Data[coverage]["Color"]}">{coverage}</span>'+', '
-    imm,res,weak=[],[],[]
-    immstring,resstring,weakstring=f":gray[Immunities:] ",f":gray[Resistances:] ",f":gray[Weaknesses:] " 
-    for i in types:
-        im=(Type_Data[i]["Immunity"])
-        for j in im:
-            imm.append(j)
-            immstring+=f'<span style="color:{Type_Data[j]["Color"]}">{j}</span>'+', '
-    for i in types:
-        res=(Type_Data[i]["Resistance"])
-        for j in res:
-            if j not in imm:
-                res.append(j)
-                resstring+=f'<span style="color:{Type_Data[j]["Color"]}">{j}</span>'+', '
-    for i in types:
-        weak=(Type_Data[i]["Weakness"])
-        for j in weak:
-            if j not in imm and j not in res:
-                weak.append(j)
-                weakstring+=f'<span style="color:{Type_Data[j]["Color"]}">{j}</span>'+', '
+    
     base_stats = {}
     for stat in data["stats"]:
         base_stats[stat["stat"]["name"]] = stat["base_stat"]
@@ -85,9 +67,6 @@ try:
         
     with col2:
         st.image(image_url, width=100) 
-    st.write("BOOYEA")
-    st.write(weakstring[0:-2:], unsafe_allow_html=True)
-    st.write(resstring[0:-2:], unsafe_allow_html=True)
-    st.write(immstring[0:-2:], unsafe_allow_html=True)
+   
 except Exception as e:
     st.write(e)
