@@ -83,10 +83,11 @@ try:
                 stat_int=f'<span style="color:DarkTurquoise">{stat_value}</span>'
             st.write(f":gray[{stat.title()}:] "+stat_int, unsafe_allow_html=True)
         st.write(coverage_string[0:-2:], unsafe_allow_html=True)
-        st.write(weakstring[0:-2:], unsafe_allow_html=True)
-        st.write(resstring[0:-2:], unsafe_allow_html=True)
-        st.write(immstring[0:-2:], unsafe_allow_html=True)
+        
     with col2:
-        st.image(image_url, width=100)  
+        st.image(image_url, width=100) 
+    st.write(weakstring[0:-2:], unsafe_allow_html=True)
+    st.write(resstring[0:-2:], unsafe_allow_html=True)
+    st.write(immstring[0:-2:], unsafe_allow_html=True)
 except Exception as e:
     st.write(e)
