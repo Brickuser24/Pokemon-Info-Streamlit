@@ -1,31 +1,27 @@
+from collections.abc import ValuesView
 import streamlit as st
 import requests
+import csv
 
 with open("Pokedex.txt", "r") as f:
     read=f.read()
     options=read.split("\n")
     f.close()
-
-coverage_options = {
-    "Normal": (["Fighting", "Psychic", "Dark"],"WhiteSmoke"),
-    "Water": (["Ice", "Steel", "Psychic"],"DodgerBlue"),
-    "Poison": (["Bug", "Grass", "Electric"],"MediumOrchid"),
-    "Psychic": (["Fairy", "Ghost", "Water"],"HotPink"),
-    "Fighting": (["Electric", "Ice", "Fire"],"Brown"),
-    "Flying": (["Steel", "Dragon", "Fighting"],"LightSkyBlue"),
-    "Grass": (["Ground", "Poison", "Rock"],"ForestGreen"),
-    "Ground": (["Rock", "Grass", "Dark"],"Sienna"),
-    "Bug": (["Dark", "Poison", "Ground"],"YellowGreen"),
-    "Rock": (["Ground", "Fire", "Electric"],"DarkKhaki"),
-    "Dark": (["Rock", "Electric", "Poison"],"DimGray"),
-    "Fairy": (["Psychic", "Water", "Grass"],"Magenta"),
-    "Steel": (["Ice", "Ground", "Ghost"],"DarkGray"),
-    "Ghost": (["Poison", "Flying", "Bug"],"RebeccaPurple"),
-    "Ice": (["Water", "Fairy", "Steel"],"DeepSkyBlue"),
-    "Dragon": (["Fire", "Grass", "Psychic"],"MediumBlue"),
-    "Electric": (["Fairy", "Grass", "Dragon"],"Gold"),
-    "Fire": (["Dragon", "Electric", "Fighting"],"OrangeRed")
-}
+with open("Type_Data.csv", encoding="utf8") as f:
+    cr=csv.reader(f)
+    next(f)
+    Type_Data={}
+    for row in cr:
+        d={}
+        headers=["","Coverages","Color","Resistance","Weakness","Immunity"]
+        for value in range(len(row)):
+            if value==0:
+                continue
+            if value ==2:
+                d[headers[value]]=row[value]
+            else:
+                d[headers[value]]=eval(row[value])
+        Type_Data[row[0]]=d
 
 try:
     pokemon=st.selectbox("Pokemon Name", placeholder="Select a Pokemon", options=options)
@@ -36,13 +32,34 @@ try:
     types_string=":gray[Types:] "
     coverages = []
     coverage_string=":gray[Coverage Options:] "
+    types=[]
     for type_data in data["types"]:
         type = type_data["type"]["name"].capitalize()
-        types_string+=f'<span style="color:{coverage_options[type][1]}">{type}</span>'+', '
-        for coverage in coverage_options[type][0]:
+        types.append(type)
+        types_string+=f'<span style="color:{Type_Data[type]["Color"]}">{type}</span>'+', '
+        for coverage in Type_Data[type]["Coverages"]:
             if coverage not in coverages:
                 coverages.append(coverage)
-                coverage_string+=f'<span style="color:{coverage_options[coverage][1]}">{coverage}</span>'+', '
+                coverage_string+=f'<span style="color:{Type_Data[coverage]["Color"]}">{coverage}</span>'+', '
+    imm,res,weak=[],[],[]
+    immstring,resstring,weakstring=f":gray[Immunities:] ",f":gray[Resistances:] ",f":gray[Weaknesses:] " 
+    for i in types:
+        im=(Type_Data[i]["Immunity"])
+        for j in im:
+            imm.append(j)
+            immstring+=f'<span style="color:{Type_Data[j]["Color"]}">{j}</span>'+', '
+    for i in types:
+        res=(Type_Data[i]["Resistance"])
+        for j in res:
+            if j not in imm:
+                res.append(j)
+                resstring+=f'<span style="color:{Type_Data[j]["Color"]}">{j}</span>'+', '
+    for i in types:
+        weak=(Type_Data[i]["Weakness"])
+        for j in weak:
+            if j not in imm and j not in res:
+                weak.append(j)
+                weakstring+=f'<span style="color:{Type_Data[j]["Color"]}">{j}</span>'+', '
     base_stats = {}
     for stat in data["stats"]:
         base_stats[stat["stat"]["name"]] = stat["base_stat"]
@@ -66,7 +83,10 @@ try:
                 stat_int=f'<span style="color:DarkTurquoise">{stat_value}</span>'
             st.write(f":gray[{stat.title()}:] "+stat_int, unsafe_allow_html=True)
         st.write(coverage_string[0:-2:], unsafe_allow_html=True)
+        st.write(weakstring[0:-2:], unsafe_allow_html=True)
+        st.write(resstring[0:-2:], unsafe_allow_html=True)
+        st.write(immstring[0:-2:], unsafe_allow_html=True)
     with col2:
         st.image(image_url, width=100)  
-except:
-    st.write("An error occured")
+except Exception as e:
+    st.write(e)
