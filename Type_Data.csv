@@ -1,0 +1,19 @@
+Type,Coverages,Color,Resistance,Weakness,Immunity
+Normal,"[""Fighting"", ""Psychic"", ""Dark""]",WhiteSmoke,"[]","[""Fighting""]","[""Ghost""]"
+Water,"[""Ice"", ""Steel"", ""Psychic""]",DodgerBlue,"[""Fire"",""Water"",""Steel"",""Ice""]","[""Grass"",""Electric""]",[]
+Poison,"[""Bug"", ""Grass"", ""Electric""]",MediumOrchid,"[""Grass"",""Fighting"",""Poison"",""Bug"",""Fairy""]","[""Ground"",""Psychic""]",[]
+Psychic,"[""Fairy"", ""Ghost"", ""Water""]",HotPink,"[""Fighting"",""Psychic""]","[""Ghost"",""Dark"",""Bug""]",[]
+Fighting,"[""Electric"", ""Ice"", ""Fire""]",Brown,"[""Bug"",""Rock"",""Dark""]","[""Flying"",""Psychic"",""Fairy""]",[]
+Flying,"[""Steel"", ""Dragon"", ""Fighting""]",LightSkyBlue,"[""Grass"",""Fighting"",""Bug""]","[""Electric"",""Rock"",""Ice""]","[""Ground""]"
+Grass,"[""Ground"", ""Poison"", ""Rock""]",ForestGreen,"[""Water"",""Electric"",""Grass"",""Ground""]","[""Fire"",""Ice"",""Poison"",""Flying"",""Bug""]",[]
+Ground,"[""Rock"", ""Grass"", ""Dark""]",Sienna,"[""Poison"",""Rock""]","[""Water"",""Grass"",""Ice""]","[""Electric""]"
+Bug,"[""Dark"", ""Poison"", ""Ground""]",YellowGreen,"[""Grass"",""Fighting"",""Ground""]","[""Fire"",""Flying"",""Rock""]",[]
+Rock,"[""Ground"", ""Fire"", ""Electric""]",DarkKhaki,"[""Normal"",""Fire"",""Poison"",""Flying""]","[""Water"",""Grass"",""Fighting"",""Ground"",""Steel""]",[]
+Dark,"[""Rock"", ""Electric"", ""Poison""]",DimGray,"[""Ghost"",""Dark""]","[""Fighting"",""Bug"",""Fairy""]","[""Psychic""]"
+Fairy,"[""Psychic"", ""Water"", ""Grass""]",Magenta,"[""Fighting"",""Bug"",""Dark""]","[""Poison"",""Steel""]","[""Dragon""]"
+Steel,"[""Ice"", ""Ground"", ""Ghost""]",DarkGray,"[""Normal"",""Grass"",""Ice"",""Flying"",""Psychic"",""Bug"",""Rock"",""Dragon"",""Steel"",""Fairy""]","[""Fire"",""Fighting"",""Ground""]","[""Poison""]"
+Ghost,"[""Poison"", ""Flying"", ""Bug""]",RebeccaPurple,"[""Poison"",""Bug""]","[""Ghost"",""Dark""]","[""Normal"",""Fighting""]"
+Ice,"[""Water"", ""Fairy"", ""Steel""]",DeepSkyBlue,"[""Ice""]","[""Fire"",""Fighting"",""Rock"",""Steel""]",[]
+Dragon,"[""Fire"", ""Grass"", ""Psychic""]",MediumBlue,"[""Fire"",""Water"",""Electric"",""Grass""]","[""Ice"",""Dragon"",""Fairy""]",[]
+Electric,"[""Fairy"", ""Grass"", ""Dragon""]",Gold,"[""Electric"",""Flying"",""Steel""]","[""Ground""]",[]
+Fire,"[""Dragon"", ""Electric"", ""Fighting""]",OrangeRed,"[""Fire"",""Grass"",""Ice"",""Bug"",""Steel"",""Fairy""]","[""Water"",""Ground"",""Rock""]",[]
